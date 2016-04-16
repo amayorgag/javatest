@@ -17,15 +17,51 @@ public class EvaluatorTest {
         Assert.assertEquals(BigDecimal.ZERO, evaluator.evaluate(Collections.emptyList()));
     }
 
+    @Test
+    public void whenListHasOneValueReturnsValue() {
+        Assert.assertEquals(new BigDecimal(11), evaluator.evaluate(Arrays.asList("11")));
+    }
+
     @Test(expected = RuntimeException.class)
     public void whenNumberOfElementsIsEvenThrows() {
         List<String> evenList = Arrays.asList("","");
         evaluator.evaluate(evenList);
     }
 
+    @Test(expected = RuntimeException.class)
+    public void whenListDoesNotHaveOperatorsThrows() {
+        evaluator.evaluate(Arrays.asList("2", "1"));
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void whenListIsNotValidInfixExpressionThrows() {
+        evaluator.evaluate(Arrays.asList("+", "2", "1"));
+    }
+
     @Test
-    public void sumsTwoNumbers() {
+    public void whenInputsAreValidInfixExpressionReturnsEvaluation() {
         Assert.assertEquals(new BigDecimal(3), evaluator.evaluate(Arrays.asList("1", "+", "2")));
+        Assert.assertEquals(new BigDecimal(2), evaluator.evaluate(Arrays.asList("4", "/", "2")));
+
+        Assert.assertEquals(
+                new BigDecimal(7),
+                evaluator.evaluate(Arrays.asList("1", "+", "2", "*", "3")));
+
+
+        BigDecimal smallResult =
+                (new BigDecimal(1).divide(new BigDecimal(323), 2)).subtract(new BigDecimal(765));
+        Assert.assertEquals(
+                smallResult,
+                evaluator.evaluate(Arrays.asList("1", "/", "323", "-", "765")));
+
+
+        BigDecimal bigResult =
+                new BigDecimal("10592.76")
+                .add(new BigDecimal(780))
+                .add(new BigDecimal(10000).multiply(new BigDecimal("200.76")));
+        List<String> bigList =
+                Arrays.asList("10,592.76", "+", "780", "+" ,"10000", "*", "200.76");
+        Assert.assertEquals(bigResult, evaluator.evaluate(bigList));
     }
 
 }

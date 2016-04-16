@@ -14,6 +14,6 @@ public class DivisionOperator extends Operator {
 
     @Override
     public BigDecimal apply(BigDecimal leftOperand, BigDecimal rightOperand) {
-        return leftOperand.divide(rightOperand);
+        return leftOperand.divide(rightOperand, 2);
     }
 }

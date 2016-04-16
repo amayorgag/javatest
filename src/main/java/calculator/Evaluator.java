@@ -21,26 +21,27 @@ public class Evaluator {
 
         Tokenizer tokenizer = new Tokenizer();
         List<Token> tokens = tokenizer.tokenize(inputs);
-        BigDecimal result = evaluatePostfixExpression(toPostfixExpression(tokens));
 
-        return result;
+        return evaluatePostfixExpression(toPostfixExpression(tokens));
     }
 
-    private BigDecimal evaluatePostfixExpression(List<Token> tokens) {
-        return null;
+    private BigDecimal evaluatePostfixExpression(List<Token> postfixExpression) {
+        return new PostfixExpressionEvaluator(postfixExpression).evaluate();
     }
 
     private List<Token> toPostfixExpression(List<Token> tokens) {
         List<Token> postfix = new InfixToPostfixConverter(tokens).convert();
-        System.out.println("Postfix Sequence is: " + postfix);
+        System.out.println(
+                "Infix sequence: " + tokens
+                + " transformed into Postfix Sequence is: " + postfix);
         return postfix;
     }
 
     private class InfixToPostfixConverter {
 
         private final List<Token> infixExpression;
-        private List<Token> result;
-        private Stack<Token> opStack;
+        private final List<Token> result;
+        private final Stack<Token> opStack;
 
 
         public InfixToPostfixConverter(List<Token> infixExpression) {
@@ -55,7 +56,7 @@ public class Evaluator {
                     throw new RuntimeException("Sequence is an invalid arithmetic infix expression: "
                             + infixExpression);
                 }
-                proccessTokenAt(i);
+                processTokenAt(i);
             }
 
             while (!opStack.isEmpty()) {
@@ -65,16 +66,16 @@ public class Evaluator {
             return result;
         }
 
-        private void proccessTokenAt(int i) {
+        private void processTokenAt(int i) {
             Token token = infixExpression.get(i);
             if (token.isValue()) {
                 result.add(token);
             } else {
-                proccessOperator(token);
+                processOperator(token);
             }
         }
 
-        private void proccessOperator(Token token) {
+        private void processOperator(Token token) {
             if (opStack.isEmpty()) {
                 opStack.push(token);
             } else if (opStack.peek().getOperator().getPrecedence() < token.getOperator().getPrecedence()) {
@@ -98,4 +99,35 @@ public class Evaluator {
 
     }
 
+    private class PostfixExpressionEvaluator {
+
+        private final List<Token> postfixExpression;
+        private final Stack<BigDecimal> valueStack;
+
+        public PostfixExpressionEvaluator(List<Token> postfixExpression) {
+            this.postfixExpression = postfixExpression;
+            this.valueStack = new Stack<>();
+        }
+
+        public BigDecimal evaluate() {
+            for (Token token : postfixExpression) {
+                processToken(token);
+            }
+
+            return valueStack.peek();
+        }
+
+        private void processToken(Token token) {
+            if (token.isValue()) {
+                valueStack.push(token.getValue());
+            } else {
+                BigDecimal rightOperand = valueStack.pop();
+                BigDecimal leftOperand = valueStack.pop();
+                BigDecimal newTop = token.getOperator()
+                        .apply(leftOperand, rightOperand);
+                valueStack.push(newTop);
+            }
+        }
+
+    }
 }

@@ -1,5 +1,6 @@
 package solvosoftjavatest;
 
+import calculator.Evaluator;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -12,10 +13,7 @@ import java.util.List;
 public class CalculatorService {
 
     public BigDecimal calculate(List<String> tokens) {
-        System.out.println("Calculate expresssion:" + tokens);
-
-
-
-        return BigDecimal.ONE;
+        System.out.println("Calculate expression:" + tokens);
+        return new Evaluator().evaluate(tokens);
     }
 }

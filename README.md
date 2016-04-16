@@ -22,7 +22,13 @@ These are valid inputs ([ ] denotes list):
 
 # Solution
 
-This solution uses Spring WS to create the web service, and Spring Boot to bootstrap the Spring Application without breaking a sweat. 
+This solution features: 
+- Spring WS to write contract-first Web Services.
+- Spring Boot to bootstrap the Spring Application without breaking a sweat.
+- Maven for a portable way of building and testing the application without depending on an IDE.
+- JUnit 4 for Unit Testing.
+- Java 8 goodies as: Streaming API, java.util.Optional.
+- OO Patterns and refactorings: Strategy Pattern, Object Method.
 
 Make sure you have installed:
 - Java 1.8
@@ -34,6 +40,9 @@ Run the project:
 
 Invoke the web service on a Linux/Unix shell:
 `curl --header "content-type: text/xml" -d @request.xml http://localhost:8080/ws`
+
+Run unit tests with
+` mvn test`
 
 
 This solution was based on the following guides:
