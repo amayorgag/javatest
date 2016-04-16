@@ -4,7 +4,7 @@
     <xs:element name="calculateRequest">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="expressionPart" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element name="input" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>

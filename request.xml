@@ -4,9 +4,9 @@
     <soapenv:Header/>
     <soapenv:Body>
         <calc:calculateRequest>
-            <calc:expressionPart>1</calc:expressionPart>
-            <calc:expressionPart>+</calc:expressionPart>
-            <calc:expressionPart>2</calc:expressionPart>
+            <calc:input>1</calc:input>
+            <calc:input>+</calc:input>
+            <calc:input>2</calc:input>
         </calc:calculateRequest>
     </soapenv:Body>
 </soapenv:Envelope>

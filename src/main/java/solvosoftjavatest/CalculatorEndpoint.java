@@ -6,8 +6,6 @@ import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
-import java.math.BigDecimal;
-
 /**
  * Created by amayorga on 16/04/16.
  */
@@ -24,7 +22,7 @@ public class CalculatorEndpoint {
     @ResponsePayload
     public CalculateResponse calculate(@RequestPayload CalculateRequest request) {
         CalculateResponse response = new CalculateResponse();
-        response.setResult(calculatorService.calculate(request.getExpressionPart()));
+        response.setResult(calculatorService.calculate(request.getInputs()));
 
         return response;
     }
