@@ -20,3 +20,15 @@ These are valid inputs ([ ] denotes list):
     [1, '/', 323, '-', 765]
     [1, '+', 2]
 
+# Solution
+
+Make sure you have installed:
+- Java 1.8
+- Apache Maven 3
+
+Run the project:
+
+`mvn spring-boot:run`
+
+Invoke the web service:
+`curl --header "content-type: text/xml" -d @request.xml http://localhost:8080/ws`

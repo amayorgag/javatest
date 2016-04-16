@@ -1,0 +1,12 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+                  xmlns:calc="http://solvosoftjavatest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://schemas.xmlsoap.org/soap/envelope/ ">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <calc:calculateRequest>
+            <calc:expressionPart>1</calc:expressionPart>
+            <calc:expressionPart>+</calc:expressionPart>
+            <calc:expressionPart>2</calc:expressionPart>
+        </calc:calculateRequest>
+    </soapenv:Body>
+</soapenv:Envelope>
