@@ -36,4 +36,16 @@ public class Token {
         return operator.get();
     }
 
+    public boolean isValue() {
+        return value.isPresent();
+    }
+
+    @Override
+    public String toString() {
+        if (isOperator()) {
+            return getOperator().toString();
+        } else {
+            return getValue().toString();
+        }
+    }
 }

@@ -8,6 +8,7 @@ import java.math.BigDecimal;
 public abstract class Operator {
 
     protected int precedence;
+    protected String symbol;
 
     static final String PLUS = "+";
     static final String MINUS = "-";
@@ -46,5 +47,14 @@ public abstract class Operator {
 
     public int getPrecedence() {
         return precedence;
+    }
+
+    @Override
+    public String toString() {
+        return getSymbol();
+    }
+
+    public String getSymbol() {
+        return symbol;
     }
 }

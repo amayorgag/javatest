@@ -9,6 +9,7 @@ public class SubtractionOperator extends Operator {
 
     public SubtractionOperator() {
         this.precedence = 1;
+        this.symbol = MINUS;
     }
 
     @Override

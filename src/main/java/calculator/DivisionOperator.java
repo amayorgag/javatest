@@ -9,6 +9,7 @@ public class DivisionOperator extends Operator {
 
     public DivisionOperator() {
         this.precedence = 3;
+        this.symbol = DIV;
     }
 
     @Override

@@ -9,6 +9,7 @@ public class AdditionOperator extends Operator {
 
     public AdditionOperator() {
         this.precedence = 1;
+        this.symbol = PLUS;
     }
 
     @Override

@@ -9,6 +9,7 @@ public class MultiplicationOperator extends Operator {
 
     public MultiplicationOperator() {
         this.precedence = 3;
+        this.symbol = MUL;
     }
 
     @Override

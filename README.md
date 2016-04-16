@@ -22,6 +22,8 @@ These are valid inputs ([ ] denotes list):
 
 # Solution
 
+This solution uses Spring WS to create the web service, and Spring Boot to bootstrap the Spring Application without breaking a sweat. 
+
 Make sure you have installed:
 - Java 1.8
 - Apache Maven 3
@@ -30,5 +32,10 @@ Run the project:
 
 `mvn spring-boot:run`
 
-Invoke the web service:
+Invoke the web service on a Linux/Unix shell:
 `curl --header "content-type: text/xml" -d @request.xml http://localhost:8080/ws`
+
+
+This solution was based on the following guides:
+https://spring.io/guides/gs/producing-web-service/
+http://www2.lawrence.edu/fast/GREGGJ/CMSC270/Infix.html
