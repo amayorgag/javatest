@@ -41,10 +41,10 @@ Run the project:
 Invoke the web service on a Linux/Unix shell:
 `curl --header "content-type: text/xml" -d @request.xml http://localhost:8080/ws`
 
-Run unit tests with
+Run unit tests with:
 ` mvn test`
 
-
 This solution was based on the following guides:
+
 https://spring.io/guides/gs/producing-web-service/
 http://www2.lawrence.edu/fast/GREGGJ/CMSC270/Infix.html

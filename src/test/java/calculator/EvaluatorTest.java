@@ -29,6 +29,21 @@ public class EvaluatorTest {
     }
 
     @Test(expected = RuntimeException.class)
+    public void whenThousandsCommaTakesTooMuchDigitsThrows() {
+        evaluator.evaluate(Arrays.asList("10,0000"));
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void whenThousandsCommaDoesntTakeEnoughDigitsThrows() {
+        evaluator.evaluate(Arrays.asList("100,02"));
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void whenInputStartsWithCommaThrows() {
+        evaluator.evaluate(Arrays.asList(",302"));
+    }
+
+    @Test(expected = RuntimeException.class)
     public void whenListDoesNotHaveOperatorsThrows() {
         evaluator.evaluate(Arrays.asList("2", "1"));
     }
